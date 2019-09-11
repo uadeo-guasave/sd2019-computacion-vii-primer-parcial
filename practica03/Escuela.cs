@@ -2,7 +2,7 @@ namespace practica03
 {
     public class Escuela
     {
-        // Características
+        // Características (Propiedades)
         public string Nombre { get; set; }
         public string Director { get; set; }
         public string ClaveSep { get; set; }
@@ -12,8 +12,9 @@ namespace practica03
         public string CorreoElectronico { get; set; }
         public string Telefono { get; set; }
 
-        // Funciones
-        public void AbrirPeriodoDeInscripcion() {
+        // Funciones (Métodos)
+        public void AbrirPeriodoDeInscripcion()
+        {
             System.Console.WriteLine("El ciclo escolar 2019-2020 inicia el 26 de Agosto de 2019");
         }
         void CerrarPeriodoDeInscripcion() {}
