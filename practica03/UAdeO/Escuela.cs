@@ -1,9 +1,8 @@
-namespace practica03
+namespace practica03.UAdeO
 {
-    public class Escuela
+    public class Escuela : Base
     {
         // Características (Propiedades)
-        public string Nombre { get; set; }
         public string Director { get; set; }
         public string ClaveSep { get; set; }
         public string UnidadRegional { get; set; }
