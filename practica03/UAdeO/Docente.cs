@@ -7,5 +7,6 @@ namespace practica03.UAdeO
         public string SegundoApellido { get; set; }
         public string Rfc { get; set; }
         public string DepartamentoDeAdscripcion { get; set; }
+        public int EscuelaId { get; set; }
     }
 }

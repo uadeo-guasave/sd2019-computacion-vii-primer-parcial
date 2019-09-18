@@ -11,5 +11,7 @@ namespace practica03.UAdeO
         public DateTime FechaDeNacimiento { get; set; }
         public string Generacion { get; set; } // 2017-2021
         public string CorreoElectronico { get; set; }
+        public int EscuelaId { get; set; }
+        public int CarreraId { get; set; }
     }
 }

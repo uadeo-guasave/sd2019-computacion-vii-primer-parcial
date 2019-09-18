@@ -7,6 +7,7 @@ namespace practica03.UAdeO
         string modalidad;
         int planDeEstudios; // Año del plan de estudios
         public int Duración { get; set; }
+        public int EscuelaId { get; set; }
 
         // Constructor
         public Carrera()

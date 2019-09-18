@@ -1,4 +1,5 @@
 ﻿using System;
+using practica03.UAdeO;
 
 namespace practica03
 {
@@ -6,7 +7,25 @@ namespace practica03
     {
         static void Main(string[] args)
         {
-            ProbarCarrera();
+            // ProbarCarrera();
+            ProbarEscuelas();
+        }
+
+        private static void ProbarEscuelas()
+        {
+            var udoGuasave = new Escuela();
+            var sistemas = new Carrera() { Nombre = "Sistemas Computacionales" };
+            var contabilidad = new Carrera() { Nombre = "Contabilidad" };
+            // udoGuasave.Carreras = new Carrera[2];
+            // udoGuasave.Carreras[0] = sistemas;
+            // udoGuasave.Carreras[1] = contabilidad;
+            // udoGuasave.Carreras[2] = contabilidad;
+            udoGuasave.Carreras.Add(sistemas);
+            udoGuasave.Carreras.Add(contabilidad);
+            foreach (var carrera in udoGuasave.Carreras)
+            {
+                Console.WriteLine($"Carrera: {carrera.Nombre}");
+            }
         }
 
         private static void ProbarCarrera()

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace practica03.UAdeO
 {
     public class Escuela : Base
@@ -10,6 +12,7 @@ namespace practica03.UAdeO
         public string SitioWebOficial { get; set; }
         public string CorreoElectronico { get; set; }
         public string Telefono { get; set; }
+        public List<Carrera> Carreras { get; set; } = new List<Carrera>();
 
         // Funciones (Métodos)
         public void AbrirPeriodoDeInscripcion()
