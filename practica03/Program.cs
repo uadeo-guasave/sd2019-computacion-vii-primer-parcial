@@ -7,8 +7,8 @@ namespace practica03
     {
         static void Main(string[] args)
         {
-            // ProbarCarrera();
-            ProbarEscuelas();
+            ProbarCarrera();
+            // ProbarEscuelas();
         }
 
         private static void ProbarEscuelas()
@@ -35,12 +35,12 @@ namespace practica03
             Console.WriteLine(sistemas.Nombre);
             // sistemas.Id = 10; Error propiedad solo de lectura
             Console.WriteLine(sistemas.Id);
-            Console.WriteLine(sistemas.ToString());
+            Console.WriteLine(sistemas);
 
-            var conta = new Carrera("Semestral", 2017);
+            var conta = new Carrera(ModalidadDeCarrera.Semestral, 2017);
             conta.Nombre = "Contabilidad";
             conta.Duración = 8;
-            Console.WriteLine(conta.ToString());
+            Console.WriteLine(conta);
         }
 
         private static void ProbarEscuela()

@@ -4,7 +4,7 @@ namespace practica03.UAdeO
     {
         // Encapsulamiento
         // atributos
-        string modalidad;
+        ModalidadDeCarrera modalidad; // trimestral o semestral
         int planDeEstudios; // Año del plan de estudios
         public int Duración { get; set; }
         public int EscuelaId { get; set; }
@@ -14,12 +14,12 @@ namespace practica03.UAdeO
         {
             var rnd = new System.Random();
             // id = rnd.Next(1,100);
-            modalidad = "Trimestral";
+            modalidad = ModalidadDeCarrera.Trimestral;
             planDeEstudios = rnd.Next(2000,2018);
         }
 
         // Sobrecarga
-        public Carrera(string modalidad, int planDeEstudios)
+        public Carrera(ModalidadDeCarrera modalidad, int planDeEstudios)
         {
             var rnd = new System.Random();
             // id = rnd.Next(1,100);
@@ -28,9 +28,9 @@ namespace practica03.UAdeO
         }
 
         // Sobreescritura
-        // public override string ToString()
-        // {
-        //     // return $"Id: {id}\nCarrera: {nombre}\nModalidad: {modalidad}\nPlan: {planDeEstudios}\nDuración: {Duración}";
-        // }
+        public override string ToString()
+        {
+            return $"Id: {Id}\nCarrera: {Nombre}\nModalidad: {modalidad}\nPlan: {planDeEstudios}\nDuración: {Duración}";
+        }
     }
 }
