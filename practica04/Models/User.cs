@@ -18,7 +18,7 @@ namespace practica04.Models
         [MaxLength(300)]
         public string RememberToken { get; set; }
         [Required]
-        public UserStatus Status { get; set; } // Active Inactive
+        public UserStatus Status { get; set; } = UserStatus.Active; // Active Inactive
     }
 
     public enum UserStatus
