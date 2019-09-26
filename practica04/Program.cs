@@ -10,7 +10,17 @@ namespace practica04
         {
             // PruebaDeConexionABaseDeDatosSqlite();
             // InsertarMultiplesRegistros();
-            InsertarUsuarioPorConsola();
+            BorrarDbYCrearDeNuevo();
+            // InsertarUsuarioPorConsola();
+        }
+
+        private static void BorrarDbYCrearDeNuevo()
+        {
+            using (var db = new SqliteDbContext())
+            {
+                db.Database.EnsureDeleted();
+                db.Database.EnsureCreated();
+            }
         }
 
         private static void InsertarUsuarioPorConsola()

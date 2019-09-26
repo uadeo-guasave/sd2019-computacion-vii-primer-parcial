@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace practica04.Models
 {
@@ -19,6 +20,10 @@ namespace practica04.Models
         public string RememberToken { get; set; }
         [Required]
         public UserStatus Status { get; set; } = UserStatus.Active; // Active Inactive
+        [Required]
+        public int RoleId { get; set; }
+        [NotMapped]
+        public Role Role { get; set; }
     }
 
     public enum UserStatus
