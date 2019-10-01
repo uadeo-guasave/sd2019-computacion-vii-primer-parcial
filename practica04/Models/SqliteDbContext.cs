@@ -31,7 +31,7 @@ namespace practica04.Models
 
                 u.Property(p=>p.RememberToken).HasDefaultValue(null);
                 
-                u.HasOne(r => r.Role).WithMany(p => p.Users);
+                u.HasOne(user => user.Role).WithMany(role => role.Users);
             });
 
             modelBuilder.Entity<Role>(r => {
@@ -41,8 +41,8 @@ namespace practica04.Models
 
                 r.HasIndex(p => p.Name).IsUnique();
 
-                r.HasMany(u => u.Users).WithOne(p => p.Role);
-                r.HasMany(pm => pm.Users).WithOne(p => p.Role);
+                r.HasMany(role => role.Users).WithOne(user => user.Role);
+                r.HasMany(role => role.Permissions).WithOne(permision => permision.Role);
             });
 
             modelBuilder.Entity<Permission>(p => {
@@ -52,7 +52,7 @@ namespace practica04.Models
                 p.Property(pm => pm.Description).HasColumnName("description");
                 p.Property(pm => pm.RoleId).HasColumnName("role_id");
 
-                p.HasOne(r => r.Role).WithMany(px => px.Permissions);
+                p.HasOne(permision => permision.Role).WithMany(role => role.Permissions);
             });
             
         }

@@ -13,6 +13,7 @@ namespace practica04.Models
         // EFCore requirement for FK constraints
         [NotMapped]
         public List<User> Users { get; set; }
+        
         [NotMapped]
         public List<Permission> Permissions { get; set; }
     }

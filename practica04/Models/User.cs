@@ -22,6 +22,7 @@ namespace practica04.Models
         public UserStatus Status { get; set; } = UserStatus.Active; // Active Inactive
         [Required]
         public int RoleId { get; set; }
+        
         [NotMapped]
         public Role Role { get; set; }
     }
