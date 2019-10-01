@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using practica04.Models;
 
 namespace practica04
@@ -10,8 +12,21 @@ namespace practica04
         {
             // PruebaDeConexionABaseDeDatosSqlite();
             // InsertarMultiplesRegistros();
-            BorrarDbYCrearDeNuevo();
+            // BorrarDbYCrearDeNuevo();
             // InsertarUsuarioPorConsola();
+            ImprmirUsuariosConRoles();
+        }
+
+        private static void ImprmirUsuariosConRoles()
+        {
+            using (var db = new SqliteDbContext())
+            {
+                var users = db.Users.Include(role => role.Role).ToList();
+                foreach (var u in users)
+                {
+                    Console.WriteLine($"Usuario:{u.FirstName} {u.LastName} at({u.Email}) with role: {u.Role.Name}");
+                }
+            }
         }
 
         private static void BorrarDbYCrearDeNuevo()
@@ -37,6 +52,8 @@ namespace practica04
             usuario.LastName = Console.ReadLine();
             Console.Write("Correo electrónico: ");
             usuario.Email = Console.ReadLine();
+            Console.WriteLine($"Rol del usuario: {Role.ToStringList()}");
+            usuario.RoleId = int.Parse(Console.ReadLine());
             using (var db = new SqliteDbContext())
             {
                 db.Add(usuario);
@@ -70,12 +87,12 @@ namespace practica04
             usuarios.Add(
                 new User
                 {
-                    Name="luis",
-                    Password="123",
-                    FirstName="Jose Luis",
-                    LastName="Si esta",
-                    Email="jluis@nosefue",
-                    Status=UserStatus.Active
+                    Name = "luis",
+                    Password = "123",
+                    FirstName = "Jose Luis",
+                    LastName = "Si esta",
+                    Email = "jluis@nosefue",
+                    Status = UserStatus.Active
                 }
             );
 
