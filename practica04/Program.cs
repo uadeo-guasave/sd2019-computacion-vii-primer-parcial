@@ -14,7 +14,36 @@ namespace practica04
             // InsertarMultiplesRegistros();
             // BorrarDbYCrearDeNuevo();
             // InsertarUsuarioPorConsola();
-            ImprmirUsuariosConRoles();
+            // ImprmirUsuariosConRoles();
+            CrearDataGeneral();
+        }
+
+        private static void CrearDataGeneral()
+        {
+            using (var db = new SqliteDbContext())
+            {
+                var roles = new List<Role>
+                {
+                    new Role {Name = "Administrador"},
+                    new Role {Name = "Usuario"}
+                };
+
+                var permisos = new List<Permission>
+                {
+                    new Permission { Description="Puede iniciar sesión", Level=PermissionLevel.TotalAccess },
+                    new Permission { Description="Puede cobrar", Level=PermissionLevel.RestrictedAccess }
+                };
+
+                var usuario = new User
+                {
+                    Name = "bidkar",
+                    Password = "123",
+                    FirstName = "Bidkar",
+                    LastName = "Aragon",
+                    Email = "bidkar@aragon",
+                    RoleId = 1
+                };
+            }
         }
 
         private static void ImprmirUsuariosConRoles()

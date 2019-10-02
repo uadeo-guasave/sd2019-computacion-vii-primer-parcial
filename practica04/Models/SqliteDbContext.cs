@@ -14,7 +14,8 @@ namespace practica04.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Definir las tablas
-            modelBuilder.Entity<User>(u => {
+            modelBuilder.Entity<User>(u =>
+            {
                 u.ToTable("users");
                 u.Property(p => p.Id).HasColumnName("id");
                 u.Property(p => p.Name).HasColumnName("name");
@@ -29,12 +30,13 @@ namespace practica04.Models
                 u.HasIndex(p => p.Name).IsUnique();
                 u.HasIndex(p => p.Email).IsUnique();
 
-                u.Property(p=>p.RememberToken).HasDefaultValue(null);
-                
+                u.Property(p => p.RememberToken).HasDefaultValue(null);
+
                 u.HasOne(user => user.Role).WithMany(role => role.Users);
             });
 
-            modelBuilder.Entity<Role>(r => {
+            modelBuilder.Entity<Role>(r =>
+            {
                 r.ToTable("roles");
                 r.Property(p => p.Id).HasColumnName("id");
                 r.Property(p => p.Name).HasColumnName("name");
@@ -42,19 +44,31 @@ namespace practica04.Models
                 r.HasIndex(p => p.Name).IsUnique();
 
                 r.HasMany(role => role.Users).WithOne(user => user.Role);
-                r.HasMany(role => role.Permissions).WithOne(permision => permision.Role);
+                r.HasMany(role => role.RolesPermissions).WithOne(rp => rp.Role);
             });
 
-            modelBuilder.Entity<Permission>(p => {
+            modelBuilder.Entity<Permission>(p =>
+            {
                 p.ToTable("permissions");
                 p.Property(pm => pm.Id).HasColumnName("id");
                 p.Property(pm => pm.Level).HasColumnName("level");
                 p.Property(pm => pm.Description).HasColumnName("description");
-                p.Property(pm => pm.RoleId).HasColumnName("role_id");
 
-                p.HasOne(permision => permision.Role).WithMany(role => role.Permissions);
+                p.HasMany(m => m.RolesPermissions).WithOne(rp => rp.Permission);
             });
-            
+
+            modelBuilder.Entity<RolePermission>(rp =>
+            {
+                rp.ToTable("roles_permissions");
+                rp.Property(p => p.RoleId).HasColumnName("role_id");
+                rp.Property(p => p.PermissionId).HasColumnName("permission_id");
+
+                rp.HasKey(k => new { k.RoleId, k.PermissionId });
+
+                rp.HasOne(p => p.Role).WithMany(r => r.RolesPermissions).IsRequired();
+                rp.HasOne(p => p.Permission).WithMany(m => m.RolesPermissions).IsRequired();
+            });
+
         }
 
         public DbSet<User> Users { get; set; }

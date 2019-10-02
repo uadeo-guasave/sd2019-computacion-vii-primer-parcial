@@ -16,7 +16,7 @@ namespace practica04.Models
         public List<User> Users { get; set; }
         
         [NotMapped]
-        public List<Permission> Permissions { get; set; }
+        public List<RolePermission> RolesPermissions { get; set; }
 
         public override string ToString()
         {
