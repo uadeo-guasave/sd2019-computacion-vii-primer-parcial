@@ -44,3 +44,25 @@ select u.id,
   from users u
   join roles r
     on u.role_id = r.id;
+
+
+select * from users;
+select * from roles;
+select * from permissions;
+select * from roles_permissions;
+
+-- ImprimirUsuariosConPermisos
+select u.id user_id,
+       u.name user_name,
+       u.first_name || ' ' || u.last_name user_fullname,
+       r.name role_name,
+       group_concat(p.description, ', ') perm_description
+  from users u
+  join roles r
+    on u.role_id = r.id
+    join roles_permissions rp
+        on r.id = rp.role_id
+        join permissions p
+            on rp.permission_id = p.id
+ group by u.id;
+ 

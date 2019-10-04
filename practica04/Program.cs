@@ -15,7 +15,13 @@ namespace practica04
             // BorrarDbYCrearDeNuevo();
             // InsertarUsuarioPorConsola();
             // ImprmirUsuariosConRoles();
-            CrearDataGeneral();
+            // CrearDataGeneral();
+            ImprimirUsuariosConPermisos();
+        }
+
+        private static void ImprimirUsuariosConPermisos()
+        {
+            // TODO
         }
 
         private static void CrearDataGeneral()
@@ -34,15 +40,38 @@ namespace practica04
                     new Permission { Description="Puede cobrar", Level=PermissionLevel.RestrictedAccess }
                 };
 
-                var usuario = new User
+                db.AddRange(
+                    new RolePermission { Role=roles[0], Permission=permisos[0] },
+                    new RolePermission { Role=roles[0], Permission=permisos[1] },
+                    new RolePermission { Role=roles[1], Permission=permisos[1] }
+                );
+
+                db.SaveChanges();
+
+                var usuarios = new List<User>
                 {
-                    Name = "bidkar",
-                    Password = "123",
-                    FirstName = "Bidkar",
-                    LastName = "Aragon",
-                    Email = "bidkar@aragon",
-                    RoleId = 1
+                    new User
+                    {
+                        Name = "bidkar",
+                        Password = "123",
+                        FirstName = "Bidkar",
+                        LastName = "Aragon",
+                        Email = "bidkar@aragon",
+                        Role = roles[0]
+                    },
+                    new User
+                    {
+                        Name = "citlalli",
+                        Password = "123",
+                        FirstName = "Citalli",
+                        LastName = "Rivera",
+                        Email = "citlalli@rivera",
+                        Role = roles[1]
+                    }
                 };
+
+                db.AddRange(usuarios);
+                db.SaveChanges();
             }
         }
 
