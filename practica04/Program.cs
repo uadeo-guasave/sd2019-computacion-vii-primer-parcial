@@ -21,7 +21,22 @@ namespace practica04
 
         private static void ImprimirUsuariosConPermisos()
         {
-            // TODO
+            using (var db = new SqliteDbContext())
+            {
+                var usuarios = db.Users
+                                 .Include(user => user.Role)
+                                    .ThenInclude(role => role.RolesPermissions)
+                                        .ThenInclude(rp => rp.Permission)
+                                 .ToList();
+                foreach (var u in usuarios)
+                {
+                    Console.WriteLine($"Permisos de {u.Name}");
+                    foreach (var p in u.Role.RolesPermissions)
+                    {
+                        Console.WriteLine(p.Permission.Description);
+                    }
+                }
+            }
         }
 
         private static void CrearDataGeneral()
